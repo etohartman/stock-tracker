@@ -1,4 +1,4 @@
-const Hoot = mongoose.model('Hoot', hootSchema);
+const mongoose = require('mongoose');
 
 const commentSchema = new mongoose.Schema(
   {
@@ -27,9 +27,11 @@ const hootSchema = new mongoose.Schema(
       enum: ["News", "Sports", "Games", "Movies", "Music", "Television"],
     },
     author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    comments: [commentSchema], // add here
+    comments: [commentSchema],
   },
   { timestamps: true }
 );
+
+const Hoot = mongoose.model('Hoot', hootSchema);
 
 module.exports = Hoot;

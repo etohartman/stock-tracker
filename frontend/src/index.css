@@ -1,83 +1,70 @@
-:root {
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color: #1a1a1a;
-  background-color: whitesmoke;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
-  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
-h1,
-h2 {
-  text-align: center;
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
 }
 
-button {
-  border: 0.5vmin solid #1a1a1a;
-  border-radius: 0.5vmin;
-  padding: 0.8vmin;
-  font-size: 2vmin;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  color: whitesmoke;
-  cursor: pointer;
-}
-
-button:hover {
+.card {
   background-color: white;
-  color: #1a1a1a;
-  border-color: #1a1a1a;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease;
 }
 
-button:disabled {
-  background-color: grey;
+.card:hover {
+  transform: scale(1.01);
 }
 
-form {
-  display: grid;
-  gap: 1.2vmin;
-  padding: 4vmin;
-  border: 0.5vmin solid #1a1a1a;
-  border-radius: 1vmin;
+.button {
+  background-color: var(--primary-blue);
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: var(--border-radius);
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: var(--secondary-blue);
+}
+
+.header {
+  background-color: var(--dark-blue);
+  color: white;
+  padding: 20px;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 input,
 select,
 textarea {
-  padding: 0.7vmin;
-  font-size: 2vmin;
-  border: 0.3vmin solid #1a1a1a;
-  border-radius: 0.5vmin;
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
 }
 
-form>button:last-child {
-  margin-top: 2vmin;
-}
-
-label {
-  font-size: 2vmin;
-  font-weight: bold;
-}
-
-h2 {
-  text-align: center;
-}
-
-.error-message {
-  color: rgb(166, 29, 29);
+form {
+  background-color: white;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
 }
