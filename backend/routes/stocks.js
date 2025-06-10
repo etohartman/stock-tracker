@@ -1,9 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const stocks = require('../controllers/stocks');
+const stocksController = require('../controllers/stocks');
 const verifyToken = require('../middleware/verify-token');
 
-router.get('/', verifyToken, stocks.getAll);
-router.post('/', verifyToken, stocks.create);
-router.put('/:id', verifyToken, stocks.update);
-router.delete('/:id', verifyToken, stocks.delete);
+// Get all stocks for the logged-in user
+router.get('/', verifyToken, stocksController.getAll);
+
+// Create a new stock
+router.post('/', verifyToken, stocksController.create);
+
+// Update a stock by ID (only if owned by user)
+router.put('/:id', verifyToken, stocksController.update);
+
+// Delete a stock by ID (only if owned by user)
+router.delete('/:id', verifyToken, stocksController.delete);
+
+module.exports = router;

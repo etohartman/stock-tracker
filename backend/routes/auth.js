@@ -1,12 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const authCtrl = require('../controllers/auth');
+const auth = require('../controllers/auth');
 
-// All paths start with '/api/auth'
-
-// POST /api/auth/signup
-router.post('/signup', authCtrl.signUp);
-// POST /api/auth/login
-router.post('/login', authCtrl.logIn);
-
-module.exports = router;
+router.post('/signup', auth.signup);
+router.post('/login', auth.login);
