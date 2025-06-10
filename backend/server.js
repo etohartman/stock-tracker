@@ -3,21 +3,20 @@ const express = require('express');
 const logger = require('morgan');
 const app = express();
 
-const hootsRouter = require('./controllers/hoots.js');
-
 require('dotenv').config();
 require('./db');
+
+const authRouter = require('./routes/auth');
+const stocksRouter = require('./routes/stocks');
 
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
 app.use(express.json());
 
-app.use('/api/hoots', hootsRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/stocks', stocksRouter);
 
-// API Routes
-
-// Use a "catch-all" route to deliver the frontend's production index.html
-app.get('/*splat', function (req, res) {
+app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
@@ -25,4 +24,3 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`The express app is listening on ${port}`);
 });
-
