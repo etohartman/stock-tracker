@@ -1,28 +1,10 @@
-const Stock = require('../models/stock');
+const mongoose = require('mongoose');
 
-exports.getAll = async (req, res) => {
-  const stocks = await Stock.find({ user: req.user._id });
-  res.json(stocks);
-};
+const stockSchema = new mongoose.Schema({
+  symbol: { type: String, required: true },
+  name: { type: String, required: true },
+  shares: { type: Number, required: true },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
+}, { timestamps: true });
 
-exports.create = async (req, res) => {
-  const stock = new Stock({ ...req.body, user: req.user._id });
-  await stock.save();
-  res.status(201).json(stock);
-};
-
-exports.update = async (req, res) => {
-  const stock = await Stock.findOneAndUpdate(
-    { _id: req.params.id, user: req.user._id },
-    req.body,
-    { new: true }
-  );
-  if (!stock) return res.status(404).json({ error: 'Not found' });
-  res.json(stock);
-};
-
-exports.delete = async (req, res) => {
-  const stock = await Stock.findOneAndDelete({ _id: req.params.id, user: req.user._id });
-  if (!stock) return res.status(404).json({ error: 'Not found' });
-  res.json({ message: 'Deleted' });
-};
+module.exports = mongoose.model('Stock', stockSchema);
