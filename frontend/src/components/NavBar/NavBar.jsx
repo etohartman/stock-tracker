@@ -17,12 +17,9 @@ export default function NavBar({ user, setUser }) {
       &nbsp; | &nbsp;
       {user ? (
         <>
-          <NavLink to="/posts" end>
-            Post List
-          </NavLink>
+          <NavLink to="/stocks">My Stocks</NavLink>
           &nbsp; | &nbsp;
-          <NavLink to="/posts/new">New Post</NavLink>
-          &nbsp; | &nbsp;
+          <button onClick={handleLogOut} style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer' }}>
           <Link to="/" onClick={handleLogOut}>Log Out</Link>
           <span>Welcome, {user.name}</span>
         </>
