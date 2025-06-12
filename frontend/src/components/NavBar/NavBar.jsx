@@ -1,14 +1,12 @@
-import { NavLink, Link, useNavigate } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import { logOut } from '../../services/authService';
 import './NavBar.css';
 
 export default function NavBar({ user, setUser }) {
-  const navigate = useNavigate();
-
   function handleLogOut() {
     logOut();
     setUser(null);
-    // The <Link> that was clicked will navigate to "/"
+    // The button will log out and set user to null
   }
 
   return (
@@ -19,8 +17,13 @@ export default function NavBar({ user, setUser }) {
         <>
           <NavLink to="/stocks">My Stocks</NavLink>
           &nbsp; | &nbsp;
-          <button onClick={handleLogOut} style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer' }}>
-          <Link to="/" onClick={handleLogOut}>Log Out</Link>
+          <button
+            onClick={handleLogOut}
+            style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer' }}
+          >
+            Log Out
+          </button>
+          &nbsp;
           <span>Welcome, {user.name}</span>
         </>
       ) : (
