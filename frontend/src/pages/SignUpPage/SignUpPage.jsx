@@ -24,6 +24,6 @@ export default function SignUpPage({ setUser }) {
       <input name="email" value={form.email} onChange={handleChange} placeholder="Email" required />
       <input name="password" type="password" value={form.password} onChange={handleChange} placeholder="Password" required />
       <button type="submit">Sign Up</button>
-      </form>
-    );
-  }
+    </form>
+  );
+}
