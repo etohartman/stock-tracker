@@ -16,6 +16,7 @@ app.use(express.json());
 app.use('/api/auth', authRouter);
 app.use('/api/stocks', stocksRouter);
 
+// FIXED: Use '/*' instead of '/{*any}'
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
