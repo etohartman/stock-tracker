@@ -1,13 +1,11 @@
-import API from '../api';
+import sendRequest from "./sendRequest";
 
-export async function getAll() {
-  const res = await API.get('/stocks');
-  return res.data;
+const BASE_URL = '/api/stocks';
+
+export async function index() {
+  return sendRequest(BASE_URL);
 }
 
-export async function deleteStock(id) {
-  const res = await API.delete(`/stocks/${id}`);
-  return res.data;
+export async function create(stockData) {
+  return sendRequest(BASE_URL, 'POST', stockData);
 }
-
-// Add more functions as needed (create, update, etc.)
