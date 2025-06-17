@@ -1,6 +1,6 @@
 import sendRequest from "./sendRequest";
 
-const BASE_URL = '/api/auth';
+const BASE_URL = '/api/auth'; 
 
 export async function signUp(userData) {
 

@@ -10,9 +10,8 @@ export default function SignUpPage({ setUser }) {
     e.preventDefault();
     try {
       const res = await authService.signUp(form);
-      setUser(res.data.user);
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('user', JSON.stringify(res.data.user));
+      setUser(res);
+
     } catch (err) {
       alert('Signup failed');
     }
