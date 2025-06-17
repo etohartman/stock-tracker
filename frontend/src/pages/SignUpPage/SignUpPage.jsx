@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import API from '../../api';
+import * as authService from '../../services/authService';
 
 export default function SignUpPage({ setUser }) {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
@@ -9,7 +9,7 @@ export default function SignUpPage({ setUser }) {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const res = await API.post('/auth/signup', form);
+      const res = await authService.signUp(form);
       setUser(res.data.user);
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user));
