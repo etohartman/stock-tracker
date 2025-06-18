@@ -6,8 +6,10 @@ const app = express();
 require('dotenv').config();
 require('./db');
 
+app.use(require('./middleware/checkToken'));
 const authRouter = require('./routes/auth');
 const stocksRouter = require('./routes/stocks');
+const { applyTimestamps } = require('./models/user');
 
 app.use(logger('dev'));
 app.use(express.json());
