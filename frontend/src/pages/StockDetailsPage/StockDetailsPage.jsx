@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import * as stockService from "../../services/stockService";
+import NoteForm from "../../components/NoteForm/NoteForm";
 
 export default function StockDetailsPage({ user, handleDeleteStock }) {
   const { stockId } = useParams();
@@ -9,6 +10,34 @@ export default function StockDetailsPage({ user, handleDeleteStock }) {
   const [editing, setEditing] = useState(false);
   const [form, setForm] = useState({ symbol: "", name: "", priceAddedAt: 0 });
   const navigate = useNavigate();
+const [notes, setNotes] = useState([]);
+
+  useEffect(() => {
+    async function fetchStock() {
+      try {
+        const data = await stockService.getById(stockId);
+        setStock(data);
+        setNotes(data.notes || []);
+        setForm({
+          symbol: data.symbol,
+          name: data.name,
+          priceAddedAt: data.priceAddedAt,
+        });
+      } catch (err) {
+        setError("Failed to load stock details.");
+      }
+    }
+    fetchStock();
+  }, [stockId]);
+
+  async function handleAddNote(noteContent) {
+    try {
+      const newNote = await stockService.addNote(stockId, noteContent);
+      setNotes([...notes, newNote]);
+    } catch (err) {
+      setError("Failed to add note.");
+    }
+  }
 
   useEffect(() => {
     async function fetchStock() {
@@ -106,6 +135,14 @@ export default function StockDetailsPage({ user, handleDeleteStock }) {
           >
             Delete Stock
           </button>
+ <h3>Notes</h3>
+      <ul>
+        {notes.map((note) => (
+          <li key={note._id}>{note.content}</li>
+        ))}
+      </ul>
+      <NoteForm onSave={handleAddNote} />
+
         </>
       )}
     </div>

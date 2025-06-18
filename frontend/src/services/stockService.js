@@ -18,3 +18,7 @@ export async function getById(stockId) {
 export async function deleteStock(stockId) {
   return sendRequest(`${BASE_URL}/${stockId}`, 'DELETE');
 }
+
+export async function addNote(stockId, noteContent) {
+  return sendRequest(`${BASE_URL}/${stockId}/notes`, 'POST', { content: noteContent });
+}

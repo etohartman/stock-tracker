@@ -25,8 +25,6 @@ export default function NewStockPage() {
     }
   }
 
-
-
   return (
     <>
       <h2>Add Stock</h2>
