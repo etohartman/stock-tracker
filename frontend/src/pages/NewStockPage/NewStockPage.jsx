@@ -16,6 +16,7 @@ export default function NewStockPage() {
       console.log('Stock Added');
       navigate('/stocks');
     } catch (err) {
+      console.error('Add stock error:', err);
       setErrorMsg('Adding Stock Failed');
     }
   }

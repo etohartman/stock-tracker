@@ -1,29 +1,55 @@
-
-import { useState } from 'react';
-import API from '../../api';
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import * as authService from "../../services/authService";
 
 export default function LogInPage({ setUser }) {
-  const [form, setForm] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
+  const navigate = useNavigate();
 
-  const handleSubmit = async e => {
-    e.preventDefault();
+  async function handleSubmit(evt) {
+    evt.preventDefault();
     try {
-      const res = await API.post('/auth/login', form);
-      setUser(res.data.user);
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('user', JSON.stringify(res.data.user));
+      const user = await authService.logIn(formData);
+      setUser(user);
+      navigate("/stocks");
     } catch (err) {
-      alert('Login failed');
+      setErrorMsg("Log In Failed - Try Again");
     }
-  };
+  }
+
+  function handleChange(evt) {
+    setFormData({ ...formData, [evt.target.name]: evt.target.value });
+    setErrorMsg("");
+  }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input name="email" value={form.email} onChange={handleChange} placeholder="Email" required />
-      <input name="password" type="password" value={form.password} onChange={handleChange} placeholder="Password" required />
-      <button type="submit">Log In</button>
-    </form>
+    <>
+      <h2>Log In!</h2>
+      <form autoComplete="off" onSubmit={handleSubmit}>
+        <label>Email</label>
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+        <label>Password</label>
+        <input
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          required
+        />
+        <button type="submit">LOG IN</button>
+      </form>
+      <p className="error-message">&nbsp;{errorMsg}</p>
+    </>
   );
 }

@@ -3,17 +3,15 @@ import sendRequest from "./sendRequest";
 const BASE_URL = '/api/auth'; 
 
 export async function signUp(userData) {
-
-console.log(userData);  
-
   const token = await sendRequest(BASE_URL + '/signup', 'POST', userData);
-  localStorage.setItem('token', token);
+  console.log('Returned token from signup:', token.token); // <— add this
+  localStorage.setItem('token', token.token);
   return getUser();
 }
-
 export async function logIn(credentials) {
   const token = await sendRequest(`${BASE_URL}/login`, 'POST', credentials);
-  localStorage.setItem('token', token);
+  console.log('Returned token from login:', token.token); // <— add this
+  localStorage.setItem('token', token.token);
   return getUser();
 }
 

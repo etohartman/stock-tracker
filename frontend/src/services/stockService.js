@@ -2,7 +2,7 @@ import sendRequest from "./sendRequest";
 
 const BASE_URL = '/api/stocks';
 
-export async function index() {
+export async function getAll() {
   return sendRequest(BASE_URL);
 }
 

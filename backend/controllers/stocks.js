@@ -3,6 +3,7 @@ const Stock = require("../models/stock");
 module.exports = {
   index,
   create,
+  update,
   show,
   deleteStock,
 };
@@ -52,9 +53,29 @@ async function create(req, res) {
   }
 }
 
+async function update(req, res) {
+  try {
+    const stock = await Stock.findById(req.params.id);
+    if (!stock) {
+      return res.status(404).json({ message: "Stock not found" });
+    }
+    if (!stock.user
+      .equals(req.user._id)) {
+      return res.status(403).send("You're not allowed to do that!");
+    }
+    Object.assign(stock, req.body);
+    await stock.save();
+    res.status(200).json(stock);
+  }
+
+  catch (err) {
+    res.status(500).json({ message: "Failed to update stock" });
+  }
+}
+
 async function show(req, res) {
   try {
-    const stock = await Stock.findById(req.params.stockId)
+    const stock = await Stock.findById(req.params.id)
       .populate("user")
       .populate("notes.user");
 
@@ -81,14 +102,14 @@ async function show(req, res) {
 
 async function deleteStock(req, res) {
   try {
-    const stock = await Stock.findById(req.params.stockId);
+    const stock = await Stock.findById(req.params.id);
     if (!stock) {
       return res.status(404).json({ message: "Stock not found" });
     }
     if (!stock.user.equals(req.user._id)) {
       return res.status(403).send("You're not allowed to do that!");
     }
-    const deletedStock = await Stock.findByIdAndDelete(req.params.stockId);
+    const deletedStock = await Stock.findByIdAndDelete(req.params.id);
     res.status(200).json(deletedStock);
   } catch (err) {
     res.status(500).json({ message: "failed to delete stock" });

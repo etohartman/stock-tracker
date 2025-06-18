@@ -16,7 +16,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/stocks', stocksRouter);
 
 // Catch-all route for React Router (must be after API routes)
-app.get('/*', (req, res) => {
+app.get('/*splat', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
