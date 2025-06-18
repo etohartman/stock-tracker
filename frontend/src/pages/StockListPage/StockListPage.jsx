@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router";
 import * as stockService from "../../services/stockService";
 
 export default function StockListPage({ user }) {
   const [stocks, setStocks] = useState([]);
 
-useEffect(() => {
-  if (!user) return; // :no_entry: wait until user is available
-  async function fetchStocks() {
-    const data = await stockService.getAll(); // :white_check_mark: token is now ready
-    setStocks(data);
-  }
-  fetchStocks();
-}, [user]); // :white_check_mark: run effect after user is set
+  useEffect(() => {
+    if (!user) return;
+    async function fetchStocks() {
+      const data = await stockService.getAll();
+      setStocks(data);
+    }
+    fetchStocks();
+  }, [user]);
 
   return (
     <div>
@@ -20,7 +21,10 @@ useEffect(() => {
         <ul>
           {stocks.map((stock) => (
             <li key={stock._id}>
-              {stock.symbol} - {stock.name} ({stock.shares} shares)
+              <NavLink to={`/stocks/${stock._id}`}>
+                {stock.symbol} - {stock.name}
+              </NavLink>
+              {/* Optionally display shares or other info here */}
             </li>
           ))}
         </ul>

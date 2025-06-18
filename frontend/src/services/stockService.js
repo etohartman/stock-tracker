@@ -9,3 +9,12 @@ export async function getAll() {
 export async function create(stockData) {
   return sendRequest(BASE_URL, 'POST', stockData);
 }
+export async function update(stockId, stockData) {
+  return sendRequest(`${BASE_URL}/${stockId}`, 'PUT', stockData);
+}
+export async function getById(stockId) {
+  return sendRequest(`${BASE_URL}/${stockId}`);
+}
+export async function deleteStock(stockId) {
+  return sendRequest(`${BASE_URL}/${stockId}`, 'DELETE');
+}
