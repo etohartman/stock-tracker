@@ -8,7 +8,7 @@ require('./db');
 
 app.use(require('./middleware/checkToken'));
 const authRouter = require('./routes/auth');
-const stocksRouter = require('./routes/stocks');
+const stocksRouter = require('./routes/stocks'); 
 
 app.use(logger('dev'));
 app.use(express.json());
