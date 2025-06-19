@@ -8,7 +8,7 @@ export default function NavBar({ user, setUser }) {
   function handleLogOut() {
     logOut();
     setUser(null);
-    // The <Link> that was clicked will navigate to "/"
+    // The <Link> that was clicked will navigate to "/" 
   }
 
   return (

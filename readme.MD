@@ -20,4 +20,5 @@ The **Stock Tracker App** is a modern web application that allows users to searc
 
 > 🌐 [Launch Stock Tracker](#)  
 ![Launch App]https://stock-tracker2-c0e49608b9b2.herokuapp.com/
+
 ---

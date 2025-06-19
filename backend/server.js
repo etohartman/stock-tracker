@@ -18,7 +18,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/stocks', stocksRouter);
 
 // Catch-all route for React Router (must be after API routes)
-app.get('/*splat', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
@@ -27,4 +27,3 @@ app.listen(port, () => {
   console.log(`The express app is listening on ${port}`);
 });
 
-app.get('/test', (req, res) => res.send('ok'));
