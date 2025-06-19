@@ -9,7 +9,6 @@ require('./db');
 app.use(require('./middleware/checkToken'));
 const authRouter = require('./routes/auth');
 const stocksRouter = require('./routes/stocks');
-const { applyTimestamps } = require('./models/user');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -18,7 +17,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/stocks', stocksRouter);
 
 // Catch-all route for React Router (must be after API routes)
-app.get('/', (req, res) => {
+app.get('/*splat', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 });
 
