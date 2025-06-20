@@ -1,3 +1,4 @@
 export default function HomePage() {
-  return <h1>Home Page</h1>;
+  return <h1>Welcome To The Stock Tracker App</h1>;
+  return <h2>Please Sign Up, then you will be able to add and track your stocks.</h2>;
 }
