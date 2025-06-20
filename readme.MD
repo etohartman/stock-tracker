@@ -25,5 +25,5 @@ The **Stock Tracker App** is a modern web application that allows users to searc
 
 ## Icebox Features / Proposed Feature
 - Use The #1 API for Market Data availble and integrate 
-- Add UI Improvements as necessary
+- Add UI Improvements as necessary 
 ---
