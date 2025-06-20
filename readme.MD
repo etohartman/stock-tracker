@@ -1,8 +1,10 @@
 # 📈 Stock Tracker App
 
-The **Stock Tracker App** is a modern web application that allows users to search for stocks, view real-time market data, and track their favorite tickers. Built using full-stack technologies, it provides a clean UI and reliable performance for anyone interested in monitoring the market.
+The **Stock Tracker App** is a modern web application that allows users to search for stocks, add their stock, track its price and add notes about the stock. Built using full-stack technologies, it provides a clean UI and reliable performance for anyone interested in monitoring the market.
 
-![App Screenshot](https://imgur.com/your-screenshot.png) <!-- Replace with actual screenshot URL -->
+![App Screenshot1](https://imgur.com/your-screenshot.png) 
+![App Screenshot2](https://imgur.com/your-screenshot.png) 
+![App Screenshot3](https://imgur.com/your-screenshot.png) 
 ---
 
 ## ⚙️ Technologies Used
@@ -11,7 +13,7 @@ The **Stock Tracker App** is a modern web application that allows users to searc
 - **Node.js**
 - **Express.js**
 - **MongoDB**
-- **React** (depending on your stack)
+- **React**
 - **HTML/CSS**
 
 ---

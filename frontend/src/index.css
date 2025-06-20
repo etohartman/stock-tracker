@@ -5,6 +5,10 @@ body {
   color: var(--text-color);
 }
 
+.centered-content {
+  text-align: center;
+}
+
 .container {
   max-width: 1200px;
   margin: auto;
